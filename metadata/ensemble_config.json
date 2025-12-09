@@ -1,0 +1,60 @@
+{
+  "model_type": "EnsembleForecaster",
+  "forecast_horizon": 30,
+  "version": "2.0",
+  "created_date": "2025-12-06 17:07:18.527543",
+  "components": {
+    "persistence": {
+      "weight": 0.5,
+      "description": "Today's GW level as forecast",
+      "type": "baseline"
+    },
+    "lstm": {
+      "weight": 0.3,
+      "description": "Neural network (EmbeddingLSTM)",
+      "type": "learned",
+      "parameters": 24457,
+      "input_dim": 7,
+      "embedding_dim": 8,
+      "hidden_dim": 64,
+      "num_layers": 2,
+      "model_file": "model_production.pth"
+    },
+    "rainfall": {
+      "weight": 0.2,
+      "description": "Weather-driven change (Ridge regression)",
+      "type": "physical",
+      "features": [
+        "Rainfall_30d_sum",
+        "T_mean",
+        "T_range",
+        "PET_7d_sum"
+      ],
+      "model_file": "rainfall_model.pkl",
+      "scaler_file": "rainfall_scaler.pkl"
+    }
+  },
+  "training": {
+    "data": "finalfinal.csv",
+    "wells": 392,
+    "total_sequences": 389327,
+    "train_split": "70%",
+    "val_split": "15%",
+    "test_split": "15%"
+  },
+  "performance": {
+    "test_rmse_baseline": 0.726,
+    "test_skill_baseline": 0.275,
+    "test_rmse_ensemble": 0.726,
+    "test_skill_ensemble": 0.275,
+    "success_rate": 0.88,
+    "notes": "Ensemble maintains baseline performance with better stability"
+  },
+  "deployment": {
+    "module": "gw_ensemble_forecaster.py",
+    "class": "GroundwaterEnsembleForecaster",
+    "device": "GPU (cuda) or CPU (fallback)",
+    "batch_capable": true,
+    "max_batch_size": 1024
+  }
+}

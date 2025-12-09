@@ -1,0 +1,52 @@
+{
+  "phase_1": {
+    "name": "1-day horizon sanity check",
+    "status": "FAILED",
+    "skill": "-445%",
+    "rmse": 2.48,
+    "insight": "LSTM over-smoothing, changes too small"
+  },
+  "phase_2": {
+    "name": "7-day horizon test",
+    "status": "FAILED",
+    "skill": "-64.3%",
+    "rmse": 1.4415,
+    "insight": "Lag-7 ACF=0.90 too high, persistence unbeatable"
+  },
+  "phase_2e": {
+    "name": "Root cause analysis",
+    "status": "BREAKTHROUGH",
+    "finding": "Lag-30 ACF=0.60 is sweet spot for learning",
+    "implication": "Need 30-day horizon, not 7-day"
+  },
+  "phase_3": {
+    "name": "30-day horizon validation",
+    "status": "SUCCESS",
+    "skill": "+3.9%",
+    "rmse": 1.7592,
+    "note": "First positive result!"
+  },
+  "phase_4": {
+    "name": "Generalization across wells",
+    "status": "PARTIAL",
+    "success_rate": "67%",
+    "insight": "Some wells fail due to domain differences"
+  },
+  "phase_2b": {
+    "name": "Embedding model (8 wells)",
+    "status": "BREAKTHROUGH",
+    "success_rate": "88%",
+    "improvement": "Fixed well 340: -67.9% \u2192 +25.2% (+93.1 points!)",
+    "key_insight": "Knowledge sharing > specialization"
+  },
+  "phase_3a": {
+    "name": "Full 392-well embedding training",
+    "status": "SUCCESS",
+    "wells_trained": 392,
+    "sequences": 389327,
+    "skill": "+27.5%",
+    "rmse_scaled": 0.726411,
+    "epochs_trained": 8,
+    "method": "Mini-batch training (batch_size=256)"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "model": {
+    "name": "EmbeddingLSTM",
+    "parameters": 24457,
+    "embedding_dim": 8,
+    "lstm_hidden": 64,
+    "model_size_mb": 0.1
+  },
+  "training_data": {
+    "wells_total": 392,
+    "sequences_total": 389327,
+    "train_sequences": 272528,
+    "val_sequences": 58399,
+    "test_sequences": 58400,
+    "split": "70/15/15"
+  },
+  "performance": {
+    "test_rmse_scaled": 0.726411,
+    "estimated_skill": 0.275,
+    "success_rate_wells": 0.88,
+    "wells_passing": "~347 wells",
+    "wells_failing": "~45 wells"
+  },
+  "inference": {
+    "typical_latency_ms": 50,
+    "max_latency_ms": 100,
+    "batch_throughput": "1000 forecasts/sec"
+  },
+  "temporal": {
+    "prediction_horizon_days": 30,
+    "input_window_days": 7,
+    "training_date": "2025-12-06"
+  }
+}

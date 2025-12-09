@@ -1,0 +1,42 @@
+{
+  "architecture": "EmbeddingLSTM",
+  "layers": {
+    "embedding": {
+      "type": "Embedding",
+      "num_embeddings": 392,
+      "embedding_dim": 8
+    },
+    "lstm": {
+      "type": "LSTM",
+      "input_size": 9,
+      "hidden_size": 64,
+      "num_layers": 1,
+      "batch_first": true
+    },
+    "fc": {
+      "type": "Sequential",
+      "layers": [
+        "Linear(64, 64)",
+        "ReLU()",
+        "Linear(64, 1)"
+      ]
+    }
+  },
+  "hyperparameters": {
+    "optimizer": "Adam",
+    "learning_rate": 0.001,
+    "weight_decay": 1e-05,
+    "batch_size": 256,
+    "max_epochs": 50,
+    "early_stopping_patience": 5,
+    "gradient_clip_norm": 1.0,
+    "loss_function": "MSELoss"
+  },
+  "preprocessing": {
+    "scaling_method": "StandardScaler",
+    "per_well_scaling": true,
+    "sequence_length": 7,
+    "target_horizon": 30,
+    "outlier_handling": "Per-station percentile clipping (5th-95th)"
+  }
+}

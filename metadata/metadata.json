@@ -1,0 +1,36 @@
+{
+  "model_type": "EmbeddingLSTM",
+  "task": "Groundwater level forecasting (30-day horizon)",
+  "config": {
+    "input_size": 1,
+    "hidden_size": 64,
+    "embedding_dim": 8,
+    "n_stations": 392,
+    "output_size": 1
+  },
+  "training": {
+    "sequences_total": 389327,
+    "wells_trained": 392,
+    "train_sequences": 272528,
+    "val_sequences": 58399,
+    "test_sequences": 58400,
+    "test_rmse_scaled": 0.726411,
+    "estimated_skill": 0.275,
+    "epochs_trained": 8
+  },
+  "preprocessing": {
+    "seq_len": 7,
+    "target_horizon_days": 30,
+    "scaling_method": "StandardScaler (per-well)",
+    "train_test_split": "70/15/15 (global timeline)"
+  },
+  "features": {
+    "input_features": 1,
+    "feature_names": [
+      "dataValue (GW level)"
+    ],
+    "output": "Target GW level 30 days ahead"
+  },
+  "created_date": "2025-12-06 16:46:00.536155",
+  "version": "1.0"
+}
